@@ -15,16 +15,16 @@ const MacroChart: React.FC<MacroChartProps> = ({ totals }) => {
 
   if (!totals) {
     return (
-        <div className="h-64 w-full flex items-center justify-center text-slate-400">
-            No data available
-        </div>
+      <div className="h-64 w-full flex items-center justify-center text-secondary-400 font-medium">
+        No data available
+      </div>
     );
   }
 
   const data = [
-    { name: 'Proteínas', value: parseValue(totals.proteinas_g), fill: '#10B981' }, // Emerald 500
-    { name: 'Carbohidratos', value: parseValue(totals.carbohidratos_g), fill: '#3B82F6' }, // Blue 500
-    { name: 'Grasas', value: parseValue(totals.grasas_g), fill: '#F59E0B' }, // Amber 500
+    { name: 'Proteínas', value: parseValue(totals.proteinas_g), fill: '#38A172' }, // Primary-500
+    { name: 'Carbohidratos', value: parseValue(totals.carbohidratos_g), fill: '#FBBF24' }, // Amber-400
+    { name: 'Grasas', value: parseValue(totals.grasas_g), fill: '#94A3B8' }, // Slate-400
   ];
 
   return (
@@ -35,26 +35,41 @@ const MacroChart: React.FC<MacroChartProps> = ({ totals }) => {
             data={data}
             cx="50%"
             cy="50%"
-            innerRadius={60}
-            outerRadius={80}
-            paddingAngle={5}
+            innerRadius={65}
+            outerRadius={85}
+            paddingAngle={6}
             dataKey="value"
+            stroke="none"
           >
             {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={entry.fill} strokeWidth={0} />
+              <Cell key={`cell-${index}`} fill={entry.fill} stroke="none" />
             ))}
           </Pie>
-          <Tooltip 
+          <Tooltip
             formatter={(value: number) => [`${value.toFixed(1)}g`, '']}
-            contentStyle={{ backgroundColor: 'white', borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+            contentStyle={{
+              backgroundColor: 'rgba(255, 255, 255, 0.9)',
+              borderRadius: '12px',
+              border: 'none',
+              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+              fontFamily: 'Outfit, sans-serif',
+              fontSize: '12px'
+            }}
+            itemStyle={{ color: '#18181B' }}
           />
-          <Legend verticalAlign="bottom" height={36} iconType="circle" />
+          <Legend
+            verticalAlign="bottom"
+            height={36}
+            iconType="circle"
+            iconSize={8}
+            wrapperStyle={{ fontSize: '12px', color: '#71717A' }}
+          />
         </PieChart>
       </ResponsiveContainer>
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none -mt-4">
-        <span className="text-xs text-slate-500 font-medium uppercase tracking-wider">Total</span>
-        <div className="text-xl font-bold text-slate-800">{totals.calorias_totales_kcal}</div>
-        <div className="text-xs text-slate-400">kcal</div>
+        <span className="text-[10px] text-secondary-400 font-bold uppercase tracking-widest block mb-0.5">Total</span>
+        <div className="text-2xl font-bold text-secondary-800 tracking-tight">{totals.calorias_totales_kcal}</div>
+        <div className="text-[10px] text-secondary-400 font-bold uppercase tracking-widest">kcal</div>
       </div>
     </div>
   );

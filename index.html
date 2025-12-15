@@ -1,14 +1,95 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NutriScan AI - Análisis Nutricional</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-      body { font-family: 'Inter', sans-serif; }
-    </style>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NutriScan AI - Análisis Precision</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Outfit', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              50: '#F2FBF6',
+              100: '#E1F6EB',
+              200: '#C2EBD6',
+              300: '#94D9B6',
+              400: '#5FBE92',
+              500: '#38A172',
+              600: '#268159',
+              700: '#206649',
+              800: '#1C523C',
+              900: '#184333',
+              950: '#0C261D',
+            },
+            secondary: {
+              50: '#F4F4F5',
+              100: '#E4E4E7',
+              200: '#D4D4D8',
+              300: '#A1A1AA',
+              400: '#71717A',
+              500: '#52525B',
+              600: '#3F3F46',
+              700: '#27272A',
+              800: '#18181B',
+              900: '#09090B',
+            },
+            'accent': '#D9F99D', // Lime-200ish
+          },
+          boxShadow: {
+            'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
+            'premium': '0 20px 40px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01)',
+            'glow': '0 0 20px rgba(56, 161, 114, 0.3)',
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            fadeInUp: {
+              '0%': { transform: 'translateY(20px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: #FAFAF9;
+      /* Stone-50 */
+    }
+
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .mesh-gradient {
+      background-color: #FAFAF9;
+      background-image:
+        radial-gradient(at 10% 10%, hsla(140, 60%, 85%, 0.4) 0px, transparent 50%),
+        radial-gradient(at 90% 10%, hsla(70, 60%, 80%, 0.3) 0px, transparent 50%),
+        radial-gradient(at 50% 90%, hsla(160, 50%, 90%, 0.5) 0px, transparent 50%);
+    }
+  </style>
   <script type="importmap">
 {
   "imports": {
@@ -21,10 +102,11 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
 </head>
-  <body class="bg-slate-50 text-slate-900 antialiased">
-    <div id="root"></div>
+
+<body class="bg-stone-50 text-secondary-800 antialiased selection:bg-primary-500 selection:text-white">
+  <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>
+
 </html>

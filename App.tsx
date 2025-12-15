@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChefHat, Github } from 'lucide-react';
+import { ChefHat, Github, Sparkles } from 'lucide-react';
 import UploadSection from './components/UploadSection';
 import NutritionCard from './components/NutritionCard';
 import { analyzeFoodImage } from './services/geminiService';
@@ -30,41 +30,55 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 to-indigo-50/50">
-      {/* Header */}
-      <header className="w-full bg-white/80 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <div className="min-h-screen flex flex-col mesh-gradient relative">
+      {/* Background Decor Elements */}
+      <div className="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary-200/30 rounded-full blur-[100px] animate-float" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-accent/20 rounded-full blur-[100px] animate-float" style={{ animationDelay: '-3s' }} />
+      </div>
+
+      {/* Floating Header */}
+      <header className="w-full pt-6 px-4 z-50 flex justify-center">
+        <div className="glass-panel px-6 py-3 rounded-full flex items-center gap-6 shadow-sm">
           <div className="flex items-center gap-2">
-            <div className="bg-indigo-600 p-2 rounded-lg text-white">
-              <ChefHat className="w-5 h-5" />
+            <div className="bg-primary-600 p-1.5 rounded-full text-white">
+              <Sparkles className="w-4 h-4" />
             </div>
-            <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-700 to-indigo-500">
-              NutriScan AI
+            <h1 className="text-lg font-bold text-secondary-800 tracking-tight">
+              NutriScan <span className="text-primary-600">AI</span>
             </h1>
           </div>
-          <a href="#" className="text-slate-400 hover:text-indigo-600 transition-colors">
-            <Github className="w-5 h-5" />
-          </a>
+          <div className="h-4 w-px bg-secondary-200" />
+          <nav className="flex items-center gap-4 text-sm font-medium text-secondary-500">
+            <a href="#" className="hover:text-primary-600 transition-colors">Historial</a>
+            <a href="#" className="hover:text-primary-600 transition-colors">Perfil</a>
+          </nav>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="flex-grow flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
-        <div className="w-full max-w-6xl">
+      <main className="flex-grow flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 mt-4">
+        <div className="w-full max-w-5xl">
           {error && (
-            <div className="max-w-2xl mx-auto mb-6 p-4 bg-red-50 border border-red-100 text-red-700 rounded-xl text-center shadow-sm">
+            <div className="max-w-2xl mx-auto mb-8 p-4 bg-red-50/50 border border-red-100 text-red-700 rounded-2xl text-center shadow-sm backdrop-blur-sm">
               {error}
             </div>
           )}
 
           {!result ? (
-            <div className="flex flex-col items-center justify-center min-h-[60vh]">
-              <div className="text-center mb-10 max-w-2xl">
-                <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">
-                  Tu Nutricionista Visual
+            <div className="flex flex-col items-center justify-center min-h-[60vh] animate-fade-in-up">
+              <div className="text-center mb-12 max-w-2xl mx-auto">
+                <span className="inline-block py-1 px-3 rounded-full bg-primary-100 text-primary-700 text-xs font-bold tracking-wide uppercase mb-4 border border-primary-200/50">
+                  Powered by Cristian Uscata
+                </span>
+                <h2 className="text-5xl md:text-6xl font-extrabold text-secondary-900 mb-6 tracking-tight leading-[1.1]">
+                  Tu nutricionista, <br />
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-400">
+                    reimaginado.
+                  </span>
                 </h2>
-                <p className="text-lg text-slate-600">
-                  Sube una foto de tu plato y obtén un desglose nutricional detallado impulsado por inteligencia artificial.
+                <p className="text-lg text-secondary-500 max-w-lg mx-auto leading-relaxed">
+                  Transforma tus comidas en datos accionables. Simplemente escanea tu plato para obtener un análisis nutricional profundo al instante.
                 </p>
               </div>
               <UploadSection onAnalyze={handleAnalyze} isLoading={isLoading} />
@@ -75,11 +89,11 @@ const App: React.FC = () => {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="w-full bg-white border-t border-slate-100 py-6 mt-auto">
-        <div className="max-w-6xl mx-auto px-4 text-center text-sm text-slate-400">
-          <p>© {new Date().getFullYear()} NutriScan AI. Powered by Cristian Uscata.</p>
-        </div>
+      {/* Minimal Footer */}
+      <footer className="w-full py-8 mt-auto text-center z-10">
+        <p className="text-xs text-secondary-400 font-medium tracking-wide">
+          © {new Date().getFullYear()} NUTRISCAN AI
+        </p>
       </footer>
     </div>
   );
