@@ -1,0 +1,7 @@
+{
+  "name": "NutriScan AI",
+  "description": "A visual nutritional analysis system powered by Gemini 2.5. Upload food photos to get instant calorie and macro estimations.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
