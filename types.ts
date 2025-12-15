@@ -1,21 +1,21 @@
 export interface Macros {
-  proteina: string | number;
-  carbohidrato: string | number;
-  grasa: string | number;
+  proteina: number;
+  carbohidrato: number;
+  grasa: number;
 }
 
 export interface DetalleComponente {
   alimento: string;
   cantidad_estimada: string;
-  calorias_kcal: string | number;
+  calorias_kcal: number;
   macros_g: Macros;
 }
 
 export interface AnalisisTotal {
-  calorias_totales_kcal: string | number;
-  proteinas_g: string | number;
-  carbohidratos_g: string | number;
-  grasas_g: string | number;
+  calorias_totales_kcal: number;
+  proteinas_g: number;
+  carbohidratos_g: number;
+  grasas_g: number;
 }
 
 export interface NutritionalResponse {
@@ -25,8 +25,14 @@ export interface NutritionalResponse {
   aviso_precision: string;
 }
 
-export interface ChartData {
+export interface DailyLogEntry {
+  id: string;
   name: string;
-  value: number;
-  fill: string;
+  timestamp: number;
+  calories: number;
+  protein: number;
+  carbs: number;
+  fat: number;
+  source: 'scan' | 'manual';
+  imageUrl?: string;
 }
